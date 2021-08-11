@@ -9,7 +9,7 @@ class TopLists extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://localhost:44318/api/MovieList/1')
+        axios.get('https://movieswebsep6.azurewebsites.net/api/MovieList/1')
             .then(res => {
                 //console.log(res);
                 this.setState({
@@ -35,7 +35,7 @@ class TopLists extends Component {
                 "_movies": null
               }
 
-        axios.post('https://localhost:44318/api/MovieList', topList)
+        axios.post('https://movieswebsep6.azurewebsites.net/api/MovieList', topList)
             .then(res => {
                 console.log(res);
                 this.setState({

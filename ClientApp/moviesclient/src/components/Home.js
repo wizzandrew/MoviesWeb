@@ -10,7 +10,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://localhost:44318/api/movies')
+        axios.get('https://movieswebsep6.azurewebsites.net/api/Movies')
             .then(res => {
                 // console.log(res);
                 this.setState({
@@ -20,7 +20,7 @@ class Home extends Component {
     }
 
     movieSearch = (title) => {
-        axios.get('https://localhost:44318/api/Movies/title/' + title)
+        axios.get('https://movieswebsep6.azurewebsites.net/api/Movies/title/' + title)
             .then(res => {
                 console.log(res.data[0]._id);
                 this.setState({

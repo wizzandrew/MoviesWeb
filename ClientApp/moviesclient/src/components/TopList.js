@@ -12,7 +12,7 @@ export default class TopList extends Component {
         //console.log('toplist id:' + id);
 
         //get top list's info
-        axios.get('https://localhost:44318/api/MovieList/1,' + id)
+        axios.get('https://movieswebsep6.azurewebsites.net/api/MovieList/1,' + id)
             .then(res => {
                 //console.log(res);
                 this.setState({
@@ -45,7 +45,7 @@ export default class TopList extends Component {
               }
         console.log(topList);
 
-        let url = 'https://localhost:44318/api/MovieList?userId=1&listId=' + topList._id;
+        let url = 'https://movieswebsep6.azurewebsites.net/api/MovieList?userId=1&listId=' + topList._id;
         axios.put(url , topList)
             .then(res => {
                 console.log(res);
@@ -56,7 +56,7 @@ export default class TopList extends Component {
     }
 
     onDelete = (e) => {
-        axios.delete('https://localhost:44318/api/MovieList/1,' + this.props.match.params.topList_id)
+        axios.delete('https://movieswebsep6.azurewebsites.net/api/MovieList/1,' + this.props.match.params.topList_id)
             .then(res => {
                 console.log(res);
             })

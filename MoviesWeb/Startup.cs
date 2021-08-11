@@ -31,7 +31,7 @@ namespace MoviesWeb
             services.AddCors();
 
             //inject movie context - database
-            services.AddDbContext<MovieContext>(o => o.UseSqlite("Data Source=movies.db"));
+            services.AddDbContext<MovieContext>(o => o.UseSqlite(Configuration.GetConnectionString("DefaultSQLiteConnection")));
             //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking))
 
             //inject movie repository

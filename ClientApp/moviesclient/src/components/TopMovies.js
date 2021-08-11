@@ -11,7 +11,7 @@ class TopMovies extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://localhost:44318/api/Movies/top10')
+        axios.get('https://movieswebsep6.azurewebsites.net/api/Movies/top10')
             .then(res => {
                 // console.log(res);
                 this.setState({
@@ -35,7 +35,7 @@ class TopMovies extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         //console.log('form submitted', this.state.from, this.state.to);
-        axios.get('https://localhost:44318/api/Movies/average/' + this.state.from + ',' + this.state.to)
+        axios.get('https://movieswebsep6.azurewebsites.net/api/Movies/average/' + this.state.from + ',' + this.state.to)
             .then(res => {
                 console.log(res);
                 this.setState({
@@ -61,6 +61,7 @@ class TopMovies extends Component {
                             <Link to={'/' + movie._id} >
                                 <span className="card-title">{movie._title}</span>
                             </Link>
+                            <span>  id: {movie._id}</span>
                             <span>  year: {movie._year}</span>
                             <span>  rating: {movie._rating}</span>
                         </div>

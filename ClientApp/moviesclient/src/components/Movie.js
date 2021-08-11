@@ -15,7 +15,7 @@ class Movie extends Component {
         let id = this.props.match.params.movie_id;
 
         //get movie info
-        axios.get('https://localhost:44318/api/Movies/' + id)
+        axios.get('https://movieswebsep6.azurewebsites.net/api/Movies/' + id)
             .then(res => {
                 console.log(res);
                 this.setState({
@@ -24,7 +24,7 @@ class Movie extends Component {
             })
 
         //get director info
-        axios.get('https://localhost:44318/api/Director/' + id)
+        axios.get('https://movieswebsep6.azurewebsites.net/api/Director/' + id)
             .then(res => {
                 console.log(res);
                 this.setState({
@@ -33,7 +33,7 @@ class Movie extends Component {
             })
 
         //get actor info
-        axios.get('https://localhost:44318/api/Actor/' + id)
+        axios.get('https://movieswebsep6.azurewebsites.net/api/Actor/' + id)
             .then(res => {
                 console.log(res);
                 this.setState({
@@ -43,7 +43,7 @@ class Movie extends Component {
     }
 
     directorSearch = (id) => {
-        axios.get('https://localhost:44318/api/Director/rating/' + id)
+        axios.get('https://movieswebsep6.azurewebsites.net/api/Director/rating/' + id)
             .then(res => {
                 console.log(res);
                 this.setState({
@@ -53,7 +53,7 @@ class Movie extends Component {
     }
 
     actorSearch = (id) => {
-        axios.get('https://localhost:44318/api/Actor/rating/' + id)
+        axios.get('https://movieswebsep6.azurewebsites.net/api/Actor/rating/' + id)
             .then(res => {
                 console.log(res);
                 this.setState({

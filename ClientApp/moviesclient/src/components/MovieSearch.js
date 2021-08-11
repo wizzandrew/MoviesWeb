@@ -9,7 +9,7 @@ class MovieSearch extends Component {
     }
 
     movieSearch = (title) => {
-        axios.get('https://localhost:44318/api/Movies/title/' + title)
+        axios.get('https://movieswebsep6.azurewebsites.net/api/Movies/title/' + title)
             .then(res => {
                 console.log(res);
                 this.setState({
