@@ -68,7 +68,7 @@ namespace MoviesWeb
             // use cors for frontend port
             app.UseCors(options =>
             {
-                options.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
+                options.WithOrigins("https://frontend-movieswebsep6.azurewebsites.net").AllowAnyMethod().AllowAnyHeader();
             });
 
 
