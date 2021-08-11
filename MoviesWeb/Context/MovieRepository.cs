@@ -49,10 +49,10 @@ namespace MoviesWeb.Context
             if (ratingDb != null) movieRating = ratingDb.Rating;
             return movieRating;
         }
-        public List<Movie> GetAllMovies()
+        public async Task<List<Movie>> GetMovies()
         {
             List<Movie> movies = new List<Movie>();
-            var moviesDb = _context.Movies.ToList();
+            var moviesDb = await _context.Movies.Skip(0).Take(15).ToListAsync();
             foreach (MovieDb movieDb in moviesDb)
             {
                 var movieRating = getMovieRating(movieDb.Id);
@@ -184,19 +184,40 @@ namespace MoviesWeb.Context
 
 
         #region MovieList
-        public async Task<MovieList> GetMovieList(int id)
+        public async Task<MovieList> GetMovieList(int userId, int id)
         {
+            var userList = await _context.UserLists.FindAsync(userId, id);
+            var listTitle = userList.Title;
+
             List<Movie> movies = new List<Movie>();
             var movieListDbs =  await _context.MovieLists.Where(x => x.Id == id).ToListAsync();
-            if (movieListDbs == null) return null;
-            if (movieListDbs != null && movieListDbs.Count == 0) return null;
-
-            for(int i=0; i< movieListDbs.Count; i++) {
-                var movie = await GetMovieById(movieListDbs[i].Movie_id);
-                if (movie != null) movies.Add(movie);
+            //if (movieListDbs == null) return null;
+            if (movieListDbs != null && movieListDbs.Count > 0)
+            {
+                for (int i = 0; i < movieListDbs.Count; i++)
+                {
+                    var movie = await GetMovieById(movieListDbs[i].Movie_id);
+                    if (movie != null) movies.Add(movie);
+                }
             }
-            return new MovieList(id, movies);
+            return new MovieList(id, listTitle, movies);
+        }
 
+        public async Task<List<MovieList>> GetMovieLists(int userId)
+        {
+            List<MovieList> movieLists = new List<MovieList>();
+
+            var lists = await _context.UserLists.Where(x => x.User_id == userId).ToListAsync();
+            if (lists != null && lists.Count > 0)
+            {
+                for(int i=0; i<lists.Count; i++)
+                {
+                    var movieList = await GetMovieList(userId, lists[i].List_id);
+                    if (movieList != null) movieLists.Add(movieList);
+                }
+                return movieLists;
+            }
+            else return null;
         }
 
         public async Task<bool> MovieListExists(int userId, int listId)
@@ -223,19 +244,22 @@ namespace MoviesWeb.Context
             //    }
             //}
 
-            var userlistDb = new UserListDb(movieList._userId, movieList._id);
+            var userlistDb = new UserListDb(movieList._userId, movieList._title, movieList._id);
             _context.UserLists.Add(userlistDb); 
             _context.SaveChanges();
             _context.Entry<UserListDb>(userlistDb).State = EntityState.Detached; 
             
-
-            for (int i=0; i<movieList._movieIds.Length; i++)
+            if(movieList._movieIds != null && movieList._movieIds.Length > 0)
             {
-                var movieListDb = new MovieListDb(movieList._id, movieList._movieIds[i]); 
-                _context.MovieLists.Add(movieListDb);
-                _context.SaveChanges();
-                _context.Entry<MovieListDb>(movieListDb).State = EntityState.Detached;
+                for (int i = 0; i < movieList._movieIds.Length; i++)
+                {
+                    var movieListDb = new MovieListDb(movieList._id, movieList._movieIds[i]);
+                    _context.MovieLists.Add(movieListDb);
+                    _context.SaveChanges();
+                    _context.Entry<MovieListDb>(movieListDb).State = EntityState.Detached;
+                }
             }
+            
             return movieList;
         }
 
@@ -275,6 +299,8 @@ namespace MoviesWeb.Context
                 await _context.SaveChangesAsync();
             }
         }
+
+        
         #endregion
 
 

@@ -27,12 +27,21 @@ namespace MoviesWeb.Controllers
 
             if(await _movieRepository.MovieListExists(userId, listId))
             {
-                return await _movieRepository.GetMovieList(listId);
+                return await _movieRepository.GetMovieList(userId, listId);
             }
             else
             {
                 return NotFound();
             }  
+        }
+
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<List<MovieList>>> GetMovieLists(int userId)
+        {
+            if (userId < 0) return BadRequest();
+
+            return await _movieRepository.GetMovieLists(userId);
+            
         }
 
         [HttpPost]
@@ -41,7 +50,7 @@ namespace MoviesWeb.Controllers
             var newMovieList = await _movieRepository.CreateMovieList(movieList);
             if (newMovieList != null)
             {
-                return CreatedAtAction(nameof(GetMovieList), new { id = newMovieList._id }, newMovieList);
+                return CreatedAtAction(nameof(GetMovieList), new { userId = newMovieList._userId, listId = newMovieList ._id}, newMovieList);
             }
             else return BadRequest("there cant be one more list with the same ID in the userlists table in database");
         }
@@ -68,7 +77,7 @@ namespace MoviesWeb.Controllers
         [HttpDelete("{userId},{listId}")]
         public async Task<ActionResult> DeleteMovieList(int userId, int listId)
         {
-            var listToDelete = await _movieRepository.GetMovieList(listId);
+            var listToDelete = await _movieRepository.GetMovieList(userId, listId);
             if (listToDelete == null) return NotFound();
 
             await _movieRepository.DeleteMovieList(userId, listId);

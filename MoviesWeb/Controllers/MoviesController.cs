@@ -20,11 +20,11 @@ namespace MoviesWeb.Controllers
             _movieRepository = movieRepository;
         }
 
-        //[HttpGet]
-        //public List<Movie> GetMovies()
-        //{
-        //    return _movieRepository.GetAllMovies();
-        //}
+        [HttpGet]
+        public async Task<List<Movie>> GetMovies()
+        {
+            return await _movieRepository.GetMovies();
+        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Movie>> GetMovieById(int id)
