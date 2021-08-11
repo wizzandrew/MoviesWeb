@@ -14,7 +14,7 @@ namespace MoviesWeb.Context.ContextModels
         public MovieListDb() { }
         public MovieListDb(int id, int movieId)
         {
-            Id = id;
+            Id = id;   
             Movie_id = movieId;
         }
 

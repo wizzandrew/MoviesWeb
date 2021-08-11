@@ -129,7 +129,7 @@ D:\_VIA\6th_Semester\SEP6\1Code\MoviesApi\MoviesWeb\MoviesWeb\bin\Debug\netcorea
 D:\_VIA\6th_Semester\SEP6\1Code\MoviesApi\MoviesWeb\MoviesWeb\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\_VIA\6th_Semester\SEP6\1Code\MoviesApi\MoviesWeb\MoviesWeb\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\_VIA\6th_Semester\SEP6\1Code\MoviesApi\MoviesWeb\MoviesWeb\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\_VIA\6th_Semester\SEP6\1Code\MoviesApi\MoviesWeb\MoviesWeb\obj\Debug\netcoreapp3.1\MoviesWeb.MvcApplicationPartsAssemblyInfo.cs
-D:\_VIA\6th_Semester\SEP6\1Code\MoviesApi\MoviesWeb\MoviesWeb\obj\Debug\netcoreapp3.1\MoviesWeb.MvcApplicationPartsAssemblyInfo.cache
 D:\_VIA\6th_Semester\SEP6\1Code\MoviesApi\MoviesWeb\MoviesWeb\obj\Debug\netcoreapp3.1\MoviesWeb.dll
 D:\_VIA\6th_Semester\SEP6\1Code\MoviesApi\MoviesWeb\MoviesWeb\obj\Debug\netcoreapp3.1\MoviesWeb.pdb
+D:\_VIA\6th_Semester\SEP6\1Code\MoviesApi\MoviesWeb\MoviesWeb\obj\Debug\netcoreapp3.1\MoviesWeb.MvcApplicationPartsAssemblyInfo.cs
+D:\_VIA\6th_Semester\SEP6\1Code\MoviesApi\MoviesWeb\MoviesWeb\obj\Debug\netcoreapp3.1\MoviesWeb.MvcApplicationPartsAssemblyInfo.cache

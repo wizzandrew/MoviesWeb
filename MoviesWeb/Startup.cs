@@ -27,6 +27,9 @@ namespace MoviesWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //add cors - access control allow origin
+            services.AddCors();
+
             //inject movie context - database
             services.AddDbContext<MovieContext>(o => o.UseSqlite("Data Source=movies.db"));
             //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking))
@@ -49,6 +52,7 @@ namespace MoviesWeb
                 app.UseDeveloperExceptionPage();
             }
 
+            
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -60,6 +64,13 @@ namespace MoviesWeb
             });
 
             app.UseHttpsRedirection();
+
+            // use cors for frontend port
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
+            });
+
 
             app.UseRouting();
 

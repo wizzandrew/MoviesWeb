@@ -9,7 +9,7 @@ namespace MoviesWeb.Context
     public interface IMovieRepository
     {
         //movies
-        List<Movie> GetAllMovies();
+        Task<List<Movie>> GetMovies();
         List<Movie> GetTopTenMovies();
         float GetMoviesAvgRating(int from, int to);
         Task<Movie> GetMovieById(int id);
@@ -24,7 +24,8 @@ namespace MoviesWeb.Context
         float GetDirectorsAvgRating(int id);
 
         //movie lists
-        Task<MovieList> GetMovieList(int id);
+        Task<MovieList> GetMovieList(int userId, int id);
+        Task<List<MovieList>> GetMovieLists(int userId);
         Task<bool> MovieListExists(int userId, int listId);
         Task<MovieList> CreateMovieList(MovieList movieList);
         void UpdateMovieList(MovieList movieList);
